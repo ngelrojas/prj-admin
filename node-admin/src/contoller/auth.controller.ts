@@ -22,3 +22,22 @@ export const Register = async (req:Request, res: Response) => {
 
     res.send(user);
 }
+
+export const Login = async (req:Request, res: Response) => {
+    const repository = getManager().getRepository(User);
+    const user = await repository.findOneBy({
+        email: req.body.email
+    });
+
+    if(!user){
+        return res.status(400).send({error:"Invalid credentials"});
+    }
+
+    if(!await bcryptjs.compare(req.body.password, user.password)){
+        return res.status(400).send({error:"Invalid credentials"});
+    }
+
+    const {password, ...data} = user
+
+    res.send(data);
+}
