@@ -42,7 +42,7 @@ export const Login = async (req:Request, res: Response) => {
 
     const token = sign({
         id: user.id
-    }, "secret");
+    }, process.env.SECRET_KEY);
 
     res.cookie('jwt', token, {
         httpOnly: true,
@@ -59,7 +59,7 @@ export const Login = async (req:Request, res: Response) => {
 export const AuthenticatedUser = async (req:Request, res: Response) => {
     try{
         const token = req.cookies['jwt'];
-        const payload:any = verify(token, "secret");
+        const payload:any = verify(token, process.env.SECRET_KEY);
 
         if(!payload){
             return res.status(401).send({error:"Unauthorized"});
