@@ -5,7 +5,9 @@ import bcryptjs from "bcryptjs";
 
 export const Users = async (req: Request, res: Response) => {
     const repository = getManager().getRepository(User);
-    const users = await repository.find();
+    const users = await repository.find({
+        relations: ["role"]
+    });
 
     res.send(users.map(u => {
         const {password, ...data} = u;
@@ -19,7 +21,10 @@ export const CreateUser = async (req: Request, res: Response) => {
     const repository = getManager().getRepository(User);
     const {password, ...user} = await repository.save({
         ...body,
-        password: hashPassword
+        password: hashPassword,
+        role: {
+            id: role_id
+        }
     });
     res.status(201).send(user);
 }
@@ -28,9 +33,11 @@ export const GetUser = async (req: Request, res: Response) => {
     try{
         const repository = getManager().getRepository(User);
 
-        const {password, ...data} = await repository.findOneBy({
-            id: (req.params.id) as any
+        const {password, ...data} = await repository.findOne({
+            where: {id: (req.params.id) as any,},
+            relations: ["role"]
         });
+
         res.status(200).send(data);
     }catch (e){
         return res.status(404).send({error:"user not found"});
@@ -38,13 +45,23 @@ export const GetUser = async (req: Request, res: Response) => {
 }
 
 export const UpdateUser = async (req: Request, res: Response) => {
-    const {role_id, ...body } = req.body;
-    const respository = getManager().getRepository(User);
-    await respository.update(req.params.id, body);
-    const {password, ...user} = await respository.findOneBy({
-        id: (req.params.id) as any
-    })
-    res.status(202).send(user);
+    try{
+        const {role_id, ...body } = req.body;
+        const respository = getManager().getRepository(User);
+        await respository.update(req.params.id, {
+            ...body,
+            role: {
+                id: role_id
+            }
+        });
+        const {password, ...user} = await respository.findOne({
+        where:{ id: (req.params.id) as any},
+            relations: ["role"]
+        })
+        res.status(202).send(user);
+    }catch (e){
+        return res.status(404).send({error:"user not found"});
+    }
 }
 
 export const DeleteUser = async (req: Request, res: Response) => {
