@@ -1,4 +1,4 @@
-import {Router} from "express";
+import express, {Router} from "express";
 import {AuthenticatedUser, Login, Logout, Register, UpdateInfo, UpdatePassword} from "./contoller/auth.controller";
 import {AuthMiddleware} from "./middleware/auth.middleware";
 import {CreateUser, DeleteUser, GetUser, UpdateUser, Users} from "./contoller/user.controller";
@@ -37,5 +37,5 @@ export const routes = (router: Router) => {
     router.delete("/api/products/:id", AuthMiddleware, DeleteProduct);
 
     router.post("/api/upload", AuthMiddleware, UploadImg);
-
+    router.use("/api/uploads", express.static("uploads"));
 };
