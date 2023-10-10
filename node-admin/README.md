@@ -8,3 +8,9 @@ truncate table role;
 
 SET FOREIGN_KEY_CHECKS = 1;
 ```
+
+### pakage faker
+- npm i faker
+- npm i -D @types/faker
+- npm install --save-dev @faker-js/faker
+- https://www.npmjs.com/package/@faker-js/faker
