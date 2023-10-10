@@ -4,8 +4,9 @@ import {AuthMiddleware} from "./middleware/auth.middleware";
 import {CreateUser, DeleteUser, GetUser, UpdateUser, Users} from "./contoller/user.controller";
 import { Permissions } from "./contoller/permission.controller";
 import {CreateRole, DeleteRole, GetRole, Roles, UpdateRole} from "./contoller/role.controller";
-import {Product} from "./entity/product.entity";
+
 import {CreateProduct, DeleteProduct, GetProduct, Products, UpdateProduct} from "./contoller/product.controller";
+import {UploadImg} from "./contoller/image.controller";
 
 export const routes = (router: Router) => {
     router.post("/api/register", Register);
@@ -34,4 +35,7 @@ export const routes = (router: Router) => {
     router.get("/api/products/:id", AuthMiddleware, GetProduct);
     router.put("/api/products/:id", AuthMiddleware, UpdateProduct);
     router.delete("/api/products/:id", AuthMiddleware, DeleteProduct);
+
+    router.post("/api/upload", AuthMiddleware, UploadImg);
+
 };

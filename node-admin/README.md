@@ -14,3 +14,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 - npm i -D @types/faker
 - npm install --save-dev @faker-js/faker
 - https://www.npmjs.com/package/@faker-js/faker
+
+### multer
+- npm i multer
+- npm i -D @types/multer
