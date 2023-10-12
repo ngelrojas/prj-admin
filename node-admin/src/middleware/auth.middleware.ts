@@ -15,7 +15,10 @@ export const AuthMiddleware = async (req: Request, res: Response, next: Function
         }
         const respository = getManager().getRepository(User);
 
-        req["user"] = await respository.findOneBy(payload.id);
+        req["user"] = await respository.findOne({
+            where: {id: parseInt(req.params.id)},
+            relations: ["role", "role.permissions"]
+        });
 
         next();
     }catch (e){
