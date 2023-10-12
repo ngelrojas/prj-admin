@@ -18,3 +18,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 ### multer
 - npm i multer
 - npm i -D @types/multer
+
+### json2csv
+- npm i json2csv
+- npm i -D @types/json2csv
