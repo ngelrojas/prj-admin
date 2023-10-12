@@ -7,6 +7,7 @@ import {CreateRole, DeleteRole, GetRole, Roles, UpdateRole} from "./contoller/ro
 
 import {CreateProduct, DeleteProduct, GetProduct, Products, UpdateProduct} from "./contoller/product.controller";
 import {UploadImg} from "./contoller/image.controller";
+import {Orders} from "./contoller/order.controller";
 
 export const routes = (router: Router) => {
     router.post("/api/register", Register);
@@ -38,4 +39,7 @@ export const routes = (router: Router) => {
 
     router.post("/api/upload", AuthMiddleware, UploadImg);
     router.use("/api/uploads", express.static("uploads"));
+
+    router.get("/api/orders", AuthMiddleware, Orders);
+
 };
