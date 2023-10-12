@@ -13,6 +13,7 @@ createConnection().then(async connection => {
             first_name: faker.name.firstName(),
             last_name: faker.name.lastName(),
             email: faker.internet.email(),
+            created_at: faker.date.past({ years: 2 }).toDateString()//TODO: check this, is not wokring, always return null
         })
         for(let j = 0; j < randomInt(1,5); j++){
             await orderItemRespository.save({

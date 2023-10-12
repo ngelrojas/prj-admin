@@ -7,7 +7,7 @@ import {CreateRole, DeleteRole, GetRole, Roles, UpdateRole} from "./contoller/ro
 
 import {CreateProduct, DeleteProduct, GetProduct, Products, UpdateProduct} from "./contoller/product.controller";
 import {UploadImg} from "./contoller/image.controller";
-import {Export, Orders} from "./contoller/order.controller";
+import {Chart, Export, Orders} from "./contoller/order.controller";
 
 export const routes = (router: Router) => {
     router.post("/api/register", Register);
@@ -42,5 +42,6 @@ export const routes = (router: Router) => {
 
     router.get("/api/orders", AuthMiddleware, Orders);
     router.post("/api/export", AuthMiddleware, Export);
+    router.get("/api/chart", AuthMiddleware, Chart);
 
 };
