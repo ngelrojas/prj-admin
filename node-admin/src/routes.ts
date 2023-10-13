@@ -32,7 +32,7 @@ export const routes = (router: Router) => {
     router.put("/api/roles/:id", AuthMiddleware, UpdateRole);
     router.delete("/api/roles/:id", AuthMiddleware, DeleteRole);
 
-    router.get("/api/products", AuthMiddleware, Products);
+    router.get("/api/products", AuthMiddleware, PermissionMiddleware("products"), Products);
     router.post("/api/products", AuthMiddleware, PermissionMiddleware("products"), CreateProduct);
     router.get("/api/products/:id", AuthMiddleware, PermissionMiddleware("products"), GetProduct);
     router.put("/api/products/:id", AuthMiddleware, PermissionMiddleware("products"), UpdateProduct);
