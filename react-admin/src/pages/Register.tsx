@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import '../Login.css';
 import {Simulate} from "react-dom/test-utils";
-import submit = Simulate.submit;
+import axios from "axios";
 
 class Register extends Component{
     first_name = "";
@@ -10,15 +10,17 @@ class Register extends Component{
     password = "";
     password_confirm = "";
 
-    submit = (e: React.FormEvent<HTMLFormElement>) => {
+    submit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log({
+
+        const response = await axios.post('http://localhost:8000/api/register',{
             first_name: this.first_name,
             last_name: this.last_name,
             email: this.email,
             password: this.password,
-            password_confirm: this.password_confirm
-        })
+            password_confirmation: this.password_confirm
+        });
+        console.log(response);
     }
     render(){
         return(
