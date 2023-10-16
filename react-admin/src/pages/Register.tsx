@@ -16,7 +16,7 @@ class Register extends Component{
     submit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const response = await axios.post('http://localhost:8000/api/register',{
+        const response = await axios.post('/register',{
             first_name: this.first_name,
             last_name: this.last_name,
             email: this.email,

@@ -9,10 +9,10 @@ function Login (){
     const submit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const response = await axios.post('http://localhost:8000/api/login',{
+        const response = await axios.post('/login',{
             email,
             password
-        }, {withCredentials: true});
+        });
 
         if(response.status === 200){
             setRedirect(true);
