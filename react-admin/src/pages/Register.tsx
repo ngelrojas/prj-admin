@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import '../Login.css';
-import {Simulate} from "react-dom/test-utils";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 class Register extends Component{
     first_name = "";
@@ -9,6 +9,9 @@ class Register extends Component{
     email = "";
     password = "";
     password_confirm = "";
+    state = {
+        redirect: false
+    }
 
     submit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -20,9 +23,17 @@ class Register extends Component{
             password: this.password,
             password_confirmation: this.password_confirm
         });
-        console.log(response);
+
+        if(response.status === 201){
+            this.setState({
+                redirect: true
+            })
+        }
     }
+
+
     render(){
+
         return(
             <main className="form-signin">
                 <form onSubmit={this.submit}>
@@ -52,6 +63,9 @@ class Register extends Component{
                         <button className="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
 
                 </form>
+                {
+                    this.state.redirect && <Link to={"/login"} >login</Link>
+                }
             </main>
         )
     }
