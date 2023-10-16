@@ -22,7 +22,7 @@ export const Register = async (req:Request, res: Response) => {
         password: await bcryptjs.hash(body.password, 10)
     });
 
-    res.send(user);
+    res.status(201).send(user);
 }
 
 export const Login = async (req:Request, res: Response) => {
