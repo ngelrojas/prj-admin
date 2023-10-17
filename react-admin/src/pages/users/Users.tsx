@@ -28,6 +28,12 @@ const Users = () => {
             setPage(page + 1);
         }
     }
+    const userDelete = async (id: number) => {
+        if(window.confirm("Are you sure you want to delete this record?")){
+            await axios.delete(`/users/${id}`);
+            setUsers(users.filter((u: User) => u.id !== id));
+        }
+    }
 
     return(
         <Wrapper>
@@ -51,7 +57,11 @@ const Users = () => {
                                     <td>{user.fullName}</td>
                                     <td>{user.email}</td>
                                     <td>{user.role?.name}</td>
-                                    <td></td>
+                                    <td>
+                                        <a href="#" className="btn btn-sm btn-outline-secondary"
+                                        onClick={() => userDelete(user.id)}
+                                        >Delete</a>
+                                    </td>
                                 </tr>
                             )
                         })
