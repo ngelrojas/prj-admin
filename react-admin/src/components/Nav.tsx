@@ -20,6 +20,7 @@ const Nav = () => {
                     data[0].first_name,
                     data[0].last_name,
                     data[0].email,
+                    data[0].role
                 ));
             }
         )();
