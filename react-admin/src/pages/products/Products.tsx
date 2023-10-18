@@ -1,8 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import Wrapper from "../../components/Wrapper";
 import axios from "axios";
 import {Link} from "react-router-dom";
 import {Product} from "../../models/product";
+import Paginator from "../../components/Paginator";
 
 const Products = () => {
     const [products, setProducts] = useState([]);
@@ -23,17 +24,6 @@ const Products = () => {
         if(window.confirm("Are you sure you want to delete this record?")){
             await axios.delete(`/products/${id}`);
             setProducts(products.filter((p: Product) => p.id !== id));
-        }
-    }
-
-    const Previous = () => {
-        if(page > 1){
-            setPage(page - 1);
-        }
-    }
-    const Next = () => {
-        if(page <= lastPage){
-            setPage(page + 1);
         }
     }
 
@@ -75,17 +65,7 @@ const Products = () => {
                     </tbody>
                 </table>
             </div>
-            <nav>
-                <ul className="pagination">
-                    <li className="page-item">
-                        <a className="page-link" href="#" onClick={Previous}>Previous</a>
-                    </li>
-
-                    <li className="page-item">
-                        <a className="page-link" href="#" onClick={Next}>Nex</a>
-                    </li>
-                </ul>
-            </nav>
+            <Paginator page={page} lastPage={lastPage} pageChange={setPage} />
         </Wrapper>
     )
 }
