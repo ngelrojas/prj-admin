@@ -36,10 +36,6 @@ const Users = () => {
         }
     }
 
-    const userEdit = async (id: number) => {
-
-    }
-
     return(
         <Wrapper>
             <div className="pt-3 pb-2 mb-3 border-bottom">
