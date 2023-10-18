@@ -8,6 +8,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import UserEdit from "./pages/users/UserEdit";
+import RoleCreate from "./pages/roles/RoleCreate";
 
 
 function App() {
@@ -17,12 +18,13 @@ function App() {
         <BrowserRouter basename="/">
             <Routes>
                 <Route path={"/"} element={<Dashboard />} />
-                <Route path={"/users"} element={<Users />} />
-                <Route path={"/roles"} element={<Roles />} />
-                <Route path={"/users/create"} element={<UserCreate />} />
-                <Route path={"/users/:id/edit"} element={<UserEdit />} />
                 <Route path={"/register"} element={<Register />} />
                 <Route path={"/login"} element={<Login />} />
+                <Route path={"/users"} element={<Users />} />
+                <Route path={"/users/create"} element={<UserCreate />} />
+                <Route path={"/users/:id/edit"} element={<UserEdit />} />
+                <Route path={"/roles"} element={<Roles />} />
+                <Route path={"/roles/create"} element={<RoleCreate />} />
             </Routes>
 
         </BrowserRouter>
