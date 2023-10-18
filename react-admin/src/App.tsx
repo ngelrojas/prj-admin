@@ -3,6 +3,8 @@ import './App.css';
 import Dashboard from "./pages/Dashboard";
 import Users from "./pages/users/Users";
 import Roles from "./pages/roles/Roles";
+import Products from "./pages/products/Products";
+
 import UserCreate from "./pages/users/UserCreate";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Register from "./pages/Register";
@@ -27,6 +29,7 @@ function App() {
                 <Route path={"/roles"} element={<Roles />} />
                 <Route path={"/roles/create"} element={<RoleCreate />} />
                 <Route path={"/roles/:id/edit"} element={<RoleEdit />} />
+                <Route path={"/products"} element={<Products />} />
             </Routes>
 
         </BrowserRouter>
