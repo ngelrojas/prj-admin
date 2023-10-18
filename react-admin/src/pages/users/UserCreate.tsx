@@ -8,6 +8,7 @@ const UserCreate = () => {
     const [email, setEmail] = useState("");
     const [role_id, setRoleId] = useState("");
     const [roles, setRoles] = useState([]);
+    const [password, setPassword] = useState("");
     const [redirect, setRedirect] = useState(false);
 
     useEffect(() => {
@@ -26,6 +27,7 @@ const UserCreate = () => {
             first_name,
             last_name,
             email,
+            password,
             role_id
         });
         setRedirect(true);
@@ -61,6 +63,10 @@ const UserCreate = () => {
                             })
                         }
                     </select>
+                </div>
+                <div className="mb-3">
+                    <label>Password</label>
+                    <input type="password" className="form-control" onChange={e=> setPassword(e.target.value)} />
                 </div>
                 <button className="btn btn-outline-secondary">save</button>
             </form>
