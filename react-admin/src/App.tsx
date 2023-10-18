@@ -6,6 +6,7 @@ import UserCreate from "./pages/users/UserCreate";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import UserEdit from "./pages/users/UserEdit";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
                 <Route path={"/"} element={<Dashboard />} />
                 <Route path={"/users"} element={<Users />} />
                 <Route path={"/users/create"} element={<UserCreate />} />
+                <Route path={"/users/:id/edit"} element={<UserEdit />} />
                 <Route path={"/register"} element={<Register />} />
                 <Route path={"/login"} element={<Login />} />
             </Routes>
