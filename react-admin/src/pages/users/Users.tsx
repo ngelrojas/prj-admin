@@ -36,6 +36,10 @@ const Users = () => {
         }
     }
 
+    const userEdit = async (id: number) => {
+
+    }
+
     return(
         <Wrapper>
             <div className="pt-3 pb-2 mb-3 border-bottom">
@@ -62,6 +66,8 @@ const Users = () => {
                                     <td>{user.email}</td>
                                     <td>{user.role?.name}</td>
                                     <td>
+                                        <Link to={`/users/${user.id}/edit`} className="btn btn-sm btn-outline-secondary"
+                                        >Edit</Link>
                                         <a href="#" className="btn btn-sm btn-outline-secondary"
                                         onClick={() => userDelete(user.id)}
                                         >Delete</a>
