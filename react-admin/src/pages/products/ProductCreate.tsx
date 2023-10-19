@@ -3,6 +3,7 @@ import Wrapper from "../../components/Wrapper";
 import {Role} from "../../models/role";
 import {Link} from "react-router-dom";
 import axios from "axios";
+import ImageUpload from "../../components/ImageUpload";
 
 const ProductCreate = () => {
     const [title, setTitle] = useState('');
@@ -36,14 +37,19 @@ const ProductCreate = () => {
                    <textarea className="form-control" onChange={(e) => setDescription(e.target.value)}></textarea>
                </div>
                <div className="mb-3">
-                   <label>Image</label>
-                   <input type="file" className="form-control" onChange={(e) => setImage(e.target.value)} />
+                   <div className="input-group">
+                       <label>Image</label>
+                       <input type="text" className="form-control"
+                              value={image}
+                              onChange={(e) => setImage(e.target.value)} />
+                        <ImageUpload uploaded={setImage } />
+                   </div>
                </div>
                <div className="mb-3">
                    <label>Price</label>
                    <input type="number" className="form-control" onChange={(e) => setPrice(parseInt(e.target.value))} />
                </div>
-               <button>save</button>
+               <button className="btn btn-outline-secondary">save</button>
            </form>
         </Wrapper>
     )
