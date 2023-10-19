@@ -7,11 +7,25 @@ import axios from "axios";
 import {Order} from "../../models/order";
 import {OrderItem} from "../../models/order-item";
 
+const hide = {
+    maxHeight: 0,
+    transition: '1000ms ease-in'
+}
+
+const show = {
+    maxHeight: '150px',
+    transition: '1000ms ease-out'
+}
+
 const Orders = () => {
     const [orders, setOrders] = useState<Order[]>([]);
     const [page, setPage] = useState(1);
     const [lastPage, setLastPage] = useState(0);
+    const [selected, setSelected] = useState(0);
 
+    const select = (id: number) => {
+        setSelected(selected !== id ?  id : 0);
+    }
     useEffect(() => {
         (
             async () => {
@@ -27,7 +41,7 @@ const Orders = () => {
                 <Link to="/orders/create" className="btn btn-sm btn-outline-secondary">Add</Link>
             </div>
             <div className="table-responsive">
-                <table className="table table-striped table-sm">
+                <table className="table table-sm">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -49,12 +63,14 @@ const Orders = () => {
                                         <td>{o.email}</td>
                                         <td>{o.total}</td>
                                         <td>
-                                            <a href="#" className="btn btn-sm btn-outline-secondary">view</a>
+                                            <a href="#" className="btn btn-sm btn-outline-secondary"
+                                            onClick={()=> select(o.id)}
+                                            >view</a>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colSpan={5}>
-                                            <div className="card">
+                                            <div style={selected === o.id ? show : hide} className="overflow-hidden">
                                                 <table>
                                                     <thead>
                                                         <tr>
