@@ -35,10 +35,21 @@ const Orders = () => {
             }
         )()
     }, [page]);
+    const handleExport = async () => {
+        const {data} = await axios.post('/export', {},{responseType: 'blob'});
+        const blob = new Blob([data], {type: 'text/csv'});
+        const url = window.URL.createObjectURL(data);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'orders.csv';
+        link.click();
+    }
+
     return(
         <Wrapper>
             <div className="pt-3 pb-2 mb-3 border-bottom">
-                <Link to="/orders/create" className="btn btn-sm btn-outline-secondary">Add</Link>
+                <a href="#" className="btn btn-sm btn-outline-secondary"
+                onClick={handleExport}>Export</a>
             </div>
             <div className="table-responsive">
                 <table className="table table-sm">
