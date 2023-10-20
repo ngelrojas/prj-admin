@@ -15,6 +15,7 @@ import RoleEdit from "./pages/roles/RoleEdit";
 import ProductCreate from "./pages/products/ProductCreate";
 import ProductEdit from "./pages/products/ProductEdit";
 import Orders from "./pages/orders/Orders";
+import Profile from "./pages/Profile";
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
                 <Route path={"/products/create"} element={<ProductCreate />} />
                 <Route path={"/products/:id/edit"} element={<ProductEdit />} />
                 <Route path={"/orders"} element={<Orders />} />
+                <Route path={"/profile"} element={<Profile />} />
             </Routes>
 
         </BrowserRouter>
