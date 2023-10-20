@@ -71,7 +71,7 @@ export const Logout = async (req:Request, res: Response) => {
 export const UpdateInfo = async (req:Request, res: Response) => {
     const user = req["user"];
     const repository = getManager().getRepository(User);
-    await repository.update(user.id, req.body);
+    await repository.update(user[0].id, req.body);
     const {password, ...data} = await repository.findOneBy(user.id);
     res.send(data);
 }
@@ -83,7 +83,7 @@ export const UpdatePassword = async (req:Request, res: Response) => {
     }
 
     const repository = getManager().getRepository(User);
-    await repository.update(user.id, {
+    await repository.update(user[0].id, {
         password: await bcryptjs.hash(req.body.password, 10)
     })
 
